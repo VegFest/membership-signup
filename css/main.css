@@ -1,0 +1,105 @@
+---
+---
+
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  align-items: center;
+  text-align: center;
+  {% if site.backgroundImage %}
+  background-image: url({{ site.backgroundImage | prepend: site.url }});
+  //background-size: cover;
+  //background-repeat: no-repeat;
+  //background-position: center center;
+  {% endif %}
+  display: flex;
+  font-family: monospace;
+  height: 100%;
+  margin: 0;
+}
+
+main {
+  background-color: #fbfbfb;
+  color: black;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 45%;
+}
+main #logo {
+  width:100%;
+}
+
+@media all and (max-width: 1000px) and (min-width: 501px) {
+  main {
+    width: 60%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  main {
+    width: 90%;
+  }
+}
+
+h1, h2, h3 {
+  font-weight: 100;
+}
+
+#mc_embed_signup {
+  width: 100%;
+}
+
+label {
+  display: none;
+}
+
+input[type="email"] {
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding: 1rem .5rem;
+  width: 100%;
+}
+
+#fb-group-btn, input[type="submit"] {
+  background-color: black;
+  border: 1px solid #333;
+  border-radius: 0;
+  color: white;
+  font-size: 1rem;
+  padding: .7rem 1rem;
+  width: 100%;
+  text-decoration: none;
+}
+
+#fb-group-btn:hover, input[type="submit"]:hover {
+  background-color: #333;
+  color: lightgrey;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a[href$='privacy'] {
+  bottom: 2rem;
+  color: black;
+  position: absolute;
+  left: 45%;
+}
+
+#privacypolicy {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  text-align: center;
+  color:lightgrey;
+}

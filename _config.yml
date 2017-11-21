@@ -1,0 +1,19 @@
+title: Launch A New Project
+tagline: Toolkit for launching your new project. Start by forking on github
+description: Make a launch site for your new webpage. Add an email list, HTTPS, free webhosting
+url: https://drewrwilson.com/launch-toolkit
+
+logo: /images/logo.png
+backgroundImage: /images/background-doodles.png
+
+mailchimpURI:
+mailchimpAntiSpamCode:
+
+showPrivacyPolicy: false
+
+socialMediaImage: /images/logo.png
+twitter:
+facebook:
+instagram:
+
+forkMeOnGithub: true #se this false to remove fork me on github ribbon
