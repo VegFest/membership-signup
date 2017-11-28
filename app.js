@@ -1,5 +1,6 @@
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
+const port = process.env.PORT;
 
 const app = require("express")();
 const stripe = require("stripe")(keySecret);
@@ -40,4 +41,4 @@ app.post("/charge", (req, res) => {
   .then(charge => res.render("charge.hbs"));
 });
 
-app.listen(4567);
+app.listen(port);
