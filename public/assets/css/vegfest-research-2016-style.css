@@ -1,0 +1,87 @@
+---
+---
+
+#research-header {
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 5%;
+  background-color: {{site.brand.colors.blue}};
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 5%;
+}
+
+#research-header p {
+  font-weight: {{site.brand.fontface.secondaryweight}};
+  font-size: 1.5em;
+  text-transform: none;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 4% 2% 6% 2%;
+  background: rgba(80,119,115,.15);
+  border-radius: 5px;
+}
+#research-header h1 {
+  font-weight: {{site.brand.fontface.primaryweight}};
+  font-size: 3em;
+  line-height: 30%;
+}
+
+#research-header h1, #research-header h2, #research-header h3 {
+font-family: 'zona_black_regular',sans-serif;
+}
+
+#research-header h3 {
+  font-weight: {{site.brand.fontface.primaryweight}};
+  font-size: 5em;
+  line-height: 30%;
+}
+
+#research-report-box {
+    background-color: #EE4823;
+    padding: 5px 10px 5px 10px;
+    font-family: 'zona_black_regular',sans-serif;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width:768px) {
+  #research-header p {
+    font-size: 1.25em;
+  }
+  #research-header h1 {
+    font-size: 1.65em;
+  }
+
+  #research-header h3 {
+    font-size: 2.8em;
+  }
+
+}
+
+@media (min-width:768px) {
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 970px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1170px) {
+  #research-header p {
+    font-size: 1.5em;
+  }
+  #research-header h1 {
+    font-size: 4.25em;
+    line-height: 0.4em;
+  }
+  #research-header h2 {
+    font-size: 3em;
+  }
+
+  #research-header h3 {
+    font-size: 7.25em;
+    line-height: 0.6em;
+  }
+}

@@ -2,13 +2,17 @@ const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
 const port = process.env.PORT;
 
-const app = require("express")();
+const express = require("express");
+const app = express();
 const stripe = require("stripe")(keySecret);
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public'))); //  "public" off of current is root
+
 
 
 //handlebars templating system
 var hbs = require('express-hbs');
-
 // Use `.hbs` for extensions and find partials in `views/partials`.
 app.engine('hbs', hbs.express4({
   partialsDir: __dirname + '/views/partials'
@@ -18,6 +22,7 @@ app.set('views', __dirname + '/views');
 
 //this is so we can accept POST requests
 app.use(require("body-parser").urlencoded({extended: false}));
+
 
 //main route & view set up with publishable key
 app.get("/", (req, res) =>
