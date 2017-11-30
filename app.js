@@ -27,7 +27,7 @@ app.get("/", (req, res) =>
   res.render("index.hbs", {keyPublishable}));
 
 //this route is for post-checkout confirmation & actually signs ppl up
-app.post("/confirm", (req, res) => {
+app.post("/subscribe", (req, res) => {
 
   stripe.customers.create({
      email: req.body.stripeEmail,
@@ -43,7 +43,7 @@ app.post("/confirm", (req, res) => {
       ],
     }))
 
-  .then(subscription => res.render("charge.hbs", {subscription}));
+  .then(subscription => res.render("subscribe.hbs", {subscription}));
 });
 
 
