@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>VegFest Membership</title>
+{{> header }}
 
-    <meta property="og:type" content="article">
-		<meta property="og:url" content="https://member.vegfest.org">
-		<meta property="og:image" content="https://member.vegfest.org/assets/img/new-england-vegfest-volunteer-team.jpg">
-		<meta property="og:title" content="Become a member of VegFest today!">
-		<meta property="og:site_name" content="VegFest.org">
-		<meta property="og:description" content="Show your support for New England VegFest and VegWorcester by becoming a VegFest member today! You'll also get discounts and perks for lots of local restaurants & businesses.">
-
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Become a member of VegFest today!">
-		<meta name="twitter:description" content="Show your support for New England VegFest and VegWorcester by becoming a VegFest member today! You'll also get discounts and perks for lots of local restaurants & businesses.">
-		<meta name="twitter:image" content="https://member.vegfest.org/assets/img/new-england-vegfest-volunteer-team.jpg">
-
-    <link rel="stylesheet" href="/assets/css/bootstrap-3.1.0.min.css">
-    <link rel="stylesheet" href="/assets/css/font-awesome-4.0.3.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
-
-    <script src="/assets/js/jquery-3.2.1.slim.min.js" ></script>
-    <script src="/assets/js/bootstrap-3.1.0.min.js"></script>
-    <script src="//checkout.stripe.com/checkout.js"></script>
-  </head>
-  <body class="green-veg-pattern-background">
-    <div class="container-fluid" id="top-heading">
       <header class="row" id="event-header">
 	      <div class="col-md-10 col-md-offset-1 " style="background: linear-gradient(to bottom,#fff 0,#eaeaea 100%);border-radius: 5px;-webkit-box-shadow: 0 1px 9px 0 rgba(0,0,0,0.7);box-shadow: 0 1px 9px 0 rgba(0,0,0,0.7);padding:5%; margin-top  :2%;">
           <div class="row">
@@ -41,9 +15,6 @@
           </div>
 
           <p>
-
-
-
             <img src="/assets/img/new-england-vegfest-volunteer-team.jpg" class="img-responsive">
 
             <br>
@@ -73,7 +44,7 @@
               <h2 class="zona">Membership Options</h2>
             </div>
           </div>
-          <form id="stripe-form" class="" action="/confirm" method="post">
+          <form id="stripe-form" class="" action="/subscribe" method="post">
             <input id="stripeEmail" type="hidden" name="stripeEmail" value="">
             <input id="stripeToken" type="hidden" name="stripeToken" value="">
             <input id="subscriptionPlan" type="hidden" name="subscriptionPlan" value="">
@@ -124,14 +95,6 @@
               </div>
             </div>
           </form>
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <p class="text-center small-text">VegFest, Inc is a 501(c)3 non-profit organization. Your contribution is tax-deductible. </p>
-            </div>
-          </div>
-	      </div>
-      </header>
-    </div>
 
 
         <script>
@@ -186,5 +149,4 @@
 
         })
     </script>
-  </body>
-</html>
+{{> footer }}
