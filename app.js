@@ -9,8 +9,6 @@ const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'public'))); //  "public" off of current is root
 
-
-
 //handlebars templating system
 var hbs = require('express-hbs');
 // Use `.hbs` for extensions and find partials in `views/partials`.
@@ -28,11 +26,8 @@ app.use(require("body-parser").urlencoded({extended: false}));
 app.get("/", (req, res) =>
   res.render("index.hbs", {keyPublishable}));
 
-//this route is for post-checkout confirmation
+//this route is for post-checkout confirmation & actually signs ppl up
 app.post("/confirm", (req, res) => {
-  // let amount = 500;
-  // let amount = req.body.stripeAmount;
-
 
   stripe.customers.create({
      email: req.body.stripeEmail,
