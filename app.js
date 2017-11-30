@@ -29,21 +29,29 @@ app.get("/", (req, res) =>
   res.render("index.hbs", {keyPublishable}));
 
 //this route is for post-checkout confirmation
-app.post("/charge", (req, res) => {
-  let amount = 500;
+app.post("/confirm", (req, res) => {
+  // let amount = 500;
+  // let amount = req.body.stripeAmount;
+
 
   stripe.customers.create({
      email: req.body.stripeEmail,
      source: req.body.stripeToken
   })
   .then(customer =>
-    stripe.charges.create({
-      amount,
-      description: "Sample Charge",
-         currency: "usd",
-         customer: customer.id
+    stripe.subscriptions.create({
+      customer: customer.id,
+      items: [
+        {
+          plan: req.body.subscriptionPlan,
+        },
+      ],
     }))
-  .then(charge => res.render("charge.hbs"));
+
+  .then(subscription => res.render("charge.hbs", {subscription}));
 });
+
+
+
 
 app.listen(port);

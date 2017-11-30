@@ -10,6 +10,7 @@
 
     <script src="/assets/js/jquery-3.2.1.slim.min.js" ></script>
     <script src="/assets/js/bootstrap-3.1.0.min.js"></script>
+    <script src="//checkout.stripe.com/checkout.js"></script>
   </head>
   <body class="green-veg-pattern-background">
     <div class="container-fluid" id="top-heading">
@@ -60,52 +61,57 @@
               <h2 class="zona">Membership Options</h2>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-4 member-level">
-              <h3 class="member-heading member-heading-1">Individual Membership</h3>
-              <ul>
-                <li>One adult</li>
-                <li>Supports New England VegFest & VegWorcester</li>
-                <li>Discounts & perks at veg-friendly businesses</li>
-                <li>Early admission to New England VegFest</li>
-                <li>100% Tax-deductible donation</li>
-              </ul>
-              <p class="text-center">$6/month</p>
-              <p  class="text-center">
-                <button class="btn btn-block btn-thirdary btn-lg" id="membership-individual">Sign up</button>
-              </p>
+          <form id="stripe-form" class="" action="/confirm" method="post">
+            <input id="stripeEmail" type="hidden" name="stripeEmail" value="">
+            <input id="stripeToken" type="hidden" name="stripeToken" value="">
+            <input id="subscriptionPlan" type="hidden" name="subscriptionPlan" value="">
 
-            </div>
-            <div class="col-md-4 member-level">
-              <h3 class="member-heading member-heading-2">Family Membership</h3>
-              <ul>
-                <li>Two adults + any kids</li>
-                <li>Supports New England VegFest & VegWorcester</li>
-                <li>Discounts & perks at veg-friendly businesses</li>
-                <li>Early admission to New England VegFest</li>
-                <li>100% Tax-deductible donation</li>
-              </ul>
-              <p class="text-center">$14/month</p>
-              <p  class="text-center">
-                <button class="btn btn-block btn-secondary btn-lg" id="membership-family">Sign up</button>
-              </p>
-            </div>
-            <div class="col-md-4 member-level">
-              <h3 class="member-heading member-heading-3">VIP Membership</h3>
-              <ul>
-                <li>Two adults + any kids</li>
-                <li>Best way to support New England VegFest & VegWorcester</li>
-                <li>Discounts & perks at veg-friendly businesses</li>
-                <li>Early admission to New England VegFest</li>
-                <li>100% Tax-deductible</li>
-              </ul>
-              <p class="text-center">$25/month</p>
-              <p  class="text-center">
-                <button class="btn btn-block btn-primary btn-lg" id="membership-vip">Sign up</button>
-              </p>
-            </div>
+            <div class="row">
+              <div class="col-md-4 member-level">
+                <h3 class="member-heading member-heading-1">Individual Membership</h3>
+                <ul>
+                  <li>One adult</li>
+                  <li>Supports New England VegFest & VegWorcester</li>
+                  <li>Discounts & perks at veg-friendly businesses</li>
+                  <li>Early admission to New England VegFest</li>
+                  <li>100% Tax-deductible donation</li>
+                </ul>
+                <p class="text-center">$6/month</p>
+                <p  class="text-center">
+                  <button class="btn btn-block btn-thirdary btn-lg" id="membership-individual">Sign up</button>
+                </p>
 
-          </div>
+              </div>
+              <div class="col-md-4 member-level">
+                <h3 class="member-heading member-heading-2">Family Membership</h3>
+                <ul>
+                  <li>Two adults + any kids</li>
+                  <li>Supports New England VegFest & VegWorcester</li>
+                  <li>Discounts & perks at veg-friendly businesses</li>
+                  <li>Early admission to New England VegFest</li>
+                  <li>100% Tax-deductible donation</li>
+                </ul>
+                <p class="text-center">$14/month</p>
+                <p  class="text-center">
+                  <button class="btn btn-block btn-secondary btn-lg" id="membership-family">Sign up</button>
+                </p>
+              </div>
+              <div class="col-md-4 member-level">
+                <h3 class="member-heading member-heading-3">VIP Membership</h3>
+                <ul>
+                  <li>Two adults + any kids</li>
+                  <li>Best way to support New England VegFest & VegWorcester</li>
+                  <li>Discounts & perks at veg-friendly businesses</li>
+                  <li>Early admission to New England VegFest</li>
+                  <li>100% Tax-deductible</li>
+                </ul>
+                <p class="text-center">$25/month</p>
+                <p  class="text-center">
+                  <button class="btn btn-block btn-primary btn-lg" id="membership-vip">Sign up</button>
+                </p>
+              </div>
+            </div>
+          </form>
           <div class="row">
             <div class="col-md-offset-2 col-md-8">
               <p class="text-center small-text">VegFest, Inc is a 501(c)3 non-profit organization. Your contribution is tax-deductible. </p>
@@ -115,60 +121,54 @@
       </header>
     </div>
 
-        <script src="//checkout.stripe.com/checkout.js"></script>
+
         <script>
-        $(document).ready(function () {
+
+        function addTokenToDOM (token, args) {
+          // Use the token to create the charge with a server-side script.
+          // You can access the token ID with `token.id`
+          $('#stripeToken').val(token.id);
+          $('#stripeEmail').val(token.email);
+
+
+          // $('#stripeAmount').val('500');
+          $('#stripe-form').submit();
+          //$('#stripeEmail').val(token.donationAmt);
+        }
+
+        function configureCheckout (name, desc, amtInCents, planID) {
+          $('#subscriptionPlan').val(planID);
+
           var checkout = StripeCheckout.configure({
-            key: "{{keyPublishable}}",
-            image: "//vegfest.org/assets/images/VegFest-logo-black-sm.png",
-            name: "Individual Membership",
-            panelLabel: "Become a member",
-            billingAddress: true,
-            zipCode: true,
-            shippingAddress: true,
-            allowRememberMe: false,
-            description: "$6/month",
-            amount:600
+            name: name,
+            description: desc,
+            amount:amtInCents,
+            token: addTokenToDOM,
+            locale:"auto",
+            key:"{{keyPublishable}}",
+            image:"//vegfest.org/assets/images/VegFest-logo-black-sm.png",
+            panelLabel:"Become a member",
+            billingAddress:true,
+            zipCode:true,
+            shippingAddress:true,
+            allowRememberMe:false
           });
+          checkout.open();
+
+        }
+
+        $(document).ready(function () {
 
           $('#membership-individual').click( function(e) {
-            checkout.open();
+            configureCheckout("Individual Membership", "$6/month", 600, "membership-individual06");
             e.preventDefault();
           });
-
           $('#membership-family').click( function(e) {
-            var checkout = StripeCheckout.configure({
-              key: "{{keyPublishable}}",
-              image: "//vegfest.org/assets/images/VegFest-logo-black-sm.png",
-              name: "Family Membership",
-              panelLabel: "Become a member",
-              billingAddress: true,
-              zipCode: true,
-              shippingAddress: true,
-              allowRememberMe: false,
-              description: "$14/month",
-              amount:1400
-            });
-
-            checkout.open();
+            configureCheckout("Family Membership", "$14/month", 1400, "membership-family14");
             e.preventDefault();
           });
-
           $('#membership-vip').click( function(e) {
-            var checkout = StripeCheckout.configure({
-              key: "{{keyPublishable}}",
-              image: "//vegfest.org/assets/images/VegFest-logo-black-sm.png",
-              name: "VIP Membership",
-              panelLabel: "Become a member",
-              billingAddress: true,
-              zipCode: true,
-              shippingAddress: true,
-              allowRememberMe: false,
-              description: "$25/month",
-              amount:2500
-            });
-
-            checkout.open();
+            configureCheckout("VIP Membership", "$25/month", 2500, "membership-vip25");
             e.preventDefault();
           });
 
