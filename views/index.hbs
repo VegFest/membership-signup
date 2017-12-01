@@ -48,6 +48,13 @@
             <input id="stripeEmail" type="hidden" name="stripeEmail" value="">
             <input id="stripeToken" type="hidden" name="stripeToken" value="">
             <input id="subscriptionPlan" type="hidden" name="subscriptionPlan" value="">
+            <input id="stripeShippingName" type="hidden" name="stripeShippingName" value="">
+            <input id="stripeShippingAddressLine1" type="hidden" name="stripeShippingAddressLine1" value="">
+            <input id="stripeShippingAddressZip" type="hidden" name="stripeShippingAddressZip" value="">
+            <input id="stripeShippingAddressState" type="hidden" name="stripeShippingAddressState" value="">
+            <input id="stripeShippingAddressCity" type="hidden" name="stripeShippingAddressCity" value="">
+            <input id="stripeShippingAddressCountry" type="hidden" name="stripeShippingAddressCountry" value="">
+            <input id="stripeShippingAddressCountryCode" type="hidden" name="stripeShippingAddressCountryCode" value="">
 
             <div class="row">
               <div class="col-md-4 member-level">
@@ -104,11 +111,18 @@
           // You can access the token ID with `token.id`
           $('#stripeToken').val(token.id);
           $('#stripeEmail').val(token.email);
+          $('#stripeShippingName').val(args.shipping_name);
+          $('#stripeShippingAddressLine1').val(args.shipping_address_line1);
+          $('#stripeShippingAddressZip').val(args.shipping_address_zip);
+          $('#stripeShippingAddressState').val(args.shipping_address_state);
+          $('#stripeShippingAddressCity').val(args.shipping_address_city);
+          $('#stripeShippingAddressCountry').val(args.shipping_address_country);
+          $('#stripeShippingAddressCountryCode').val(args.shipping_address_country_code);
 
+          console.log('token ',token);
+          console.log('arg ',args);
 
-          // $('#stripeAmount').val('500');
           $('#stripe-form').submit();
-          //$('#stripeEmail').val(token.donationAmt);
         }
 
         function configureCheckout (name, desc, amtInCents, planID) {

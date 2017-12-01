@@ -28,17 +28,32 @@ app.get("/", (req, res) =>
 
 //this route is for post-checkout confirmation & actually signs ppl up
 app.post("/subscribe", (req, res) => {
+  console.log('New Member! Here is what was just submitted:');
+  console.log(req.body);
 
   stripe.customers.create({
      email: req.body.stripeEmail,
-     source: req.body.stripeToken
+     source: req.body.stripeToken,
+     metadata: {
+       memberStartDate: new Date(),
+       memberPlan: req.body.subscriptionPlan,
+       memberEmail: req.body.stripeEmail,
+       //memberSrc: req.body.src, //add this later in the frontend, it should come from GET param ?src=XXXX
+       shippingName:req.body.stripeShippingName,
+       shippingAddressLine1:req.body.stripeShippingAddressLine1,
+       shippingAddressZip:req.body.stripeShippingAddressZip,
+       shippingAddressState:req.body.stripeShippingAddressState,
+       shippingAddressCity:req.body.stripeShippingAddressCity,
+       shippingAddressCountry:req.body.stripeShippingAddressCountry,
+       shippingAddressCountryCode:req.body.stripeShippingAddressCountryCode
+     }
   })
   .then(customer =>
     stripe.subscriptions.create({
       customer: customer.id,
       items: [
         {
-          plan: req.body.subscriptionPlan,
+          plan: req.body.subscriptionPlan
         },
       ],
     }))
