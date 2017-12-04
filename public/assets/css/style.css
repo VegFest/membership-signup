@@ -14,19 +14,47 @@ html, body {
   color: #404040;
 }
 
+#memberperks {
+  background: #35c0bd;
+  color: #fff;
+  padding: 25px;
+  margin: 0;
+}
+#memberperks ul li:before {
+  content: url('/assets/img/check.png');
+  margin: 0em 10px 1em 0;
+  display: inline-block;
+  float: left;
+  clear: left;
+}
+#memberperks ul li {
+  display: list-item;
+  padding-top: 1em;
+  font-size: 26px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  list-style: none;
+}
+
 #event-header {
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-bottom: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 1%;
 }
 
 #event-header p {
   font-weight: 300;
-  font-size: 1.5em;
+  /*font-size: 1.5em;*/
 }
 #event-header h1 {
   font-weight: 800;
-  font-size: 3em;
+}
+#event-header h2 {
+  font-weight: 400;
+}
+#event-header h3 {
+  font-weight: 300;
+  line-height: 1.5em;
 }
 
 #ask {
@@ -226,4 +254,7 @@ footer {
 }
 .small-text {
   font-size: 1em !important;
+}
+.perks-small-print {
+  font-size: .75em;
 }

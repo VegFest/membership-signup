@@ -9,41 +9,21 @@
           </div>
           <div class="text-center">
             <h1 class="zona">Become a VegFest Member!</h1>
-  	        <p>
+  	        <h2>
               Show your support for <strong>VegWorcester</strong> & <strong>New England VegFest</strong>!
-  	        </p>
+  	        </h2>
           </div>
 
           <p>
             <img src="/assets/img/new-england-vegfest-volunteer-team.jpg" class="img-responsive">
 
             <br>
-            <h2 class="white">Help Sustain the New England VegFest & VegWorcester</h2>
-            <p>Attending New England VegFest is free &amp; open to the public and we rely on support &amp; donations from individuals to make this event happen. This festival is organized &amp; run by volunteers. If you've attended in the past and enjoyed the event, please show your support by becoming a member today&mdash;we have some nice perks to show our gratitude!</p>
+            <h2>Help Sustain the New England VegFest & VegWorcester</h2>
+            <h3>
+              Attending New England VegFest is free &amp; open to the public and we rely on support &amp; donations from individuals to make this event happen. This festival is organized &amp; run by volunteers. If you've attended in the past and enjoyed the event, please show your support by becoming a member today&mdash;we have some nice perks to show our gratitude!
+            </h3>
 
-            <div class="row">
-              <div class="col-md-offset-2 col-md-8">
-                <h4>DISCOUNTS & PERKS</h4>
-                <h5>ALL YEAR ROUND</h5>
-                <p class="small-text">
-                  <li><strong>The Vegan Nest</strong> <em>(Worcester, MA)</em> &mdash; 10% off every day<br></li>
-                  <li><strong>WooBerry</strong> <em>(Worcester, MA)</em> &mdash; 10% off every day<br></li>
-                  <li><strong>Pizza Palace</strong> <em>(Milford, MA)</em> &mdash; 10% off every day<br></li>
-                  <li><strong>Green Hair Company</strong> &mdash; 10% off products every day<br></li>
-                  <li><strong>NU Cafe</strong> <em>(Worcester, MA)</em> &mdash; 20% off every Tuesday<br></li>
-                  <li><strong>Belmont Vegetarian</strong> <em>(Worcester, MA)</em> &mdash; Free upgrade from medium to large on Thursdays<br></li>
-                  <li><strong>Pet Rock Fest Festival</strong> <em>(Grafton, MA)</em> &mdash; $2 Off admission<br></li>
-                  <li><strong>New England VegFest</strong> <em>April 29, 2018 (Worcester, MA)</em> &mdash; early admission<br></li>
-                </p>
-                <em>More discounts & perks added all the time, check back here for the most up-to-date list!</em>
-              </div>
-            </div>
-          </p>
-          <div class="row">
-            <div class="col-xs-12 text-center">
-              <h2 class="zona">Membership Options</h2>
-            </div>
-          </div>
+
           <form id="stripe-form" class="" action="/subscribe" method="post">
             <input id="stripeEmail" type="hidden" name="stripeEmail" value="">
             <input id="stripeToken" type="hidden" name="stripeToken" value="">
@@ -55,19 +35,24 @@
             <input id="stripeShippingAddressCity" type="hidden" name="stripeShippingAddressCity" value="">
             <input id="stripeShippingAddressCountry" type="hidden" name="stripeShippingAddressCountry" value="">
             <input id="stripeShippingAddressCountryCode" type="hidden" name="stripeShippingAddressCountryCode" value="">
-
+            {{> membership-perks}}
+            <div class="row">
+              <div class="col-xs-12 text-center">
+                <h2 class="zona">Membership Options</h2>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-4 member-level">
                 <h3 class="member-heading member-heading-1">Individual Membership</h3>
                 <ul>
                   <li>One adult</li>
-                  <li>Supports New England VegFest & VegWorcester</li>
-                  <li>Discounts & perks at veg-friendly businesses</li>
+                  <li>Supports New England VegFest &amp; VegWorcester</li>
+                  <li>Discounts &amp; perks at veg-friendly businesses</li>
                   <li>Early admission to New England VegFest</li>
                   <li>100% Tax-deductible donation</li>
                 </ul>
                 <p class="text-center">$6/month</p>
-                <p  class="text-center">
+                <p class="text-center">
                   <button class="btn btn-block btn-thirdary btn-lg" id="membership-individual">Sign up</button>
                 </p>
 
@@ -76,13 +61,13 @@
                 <h3 class="member-heading member-heading-2">Family Membership</h3>
                 <ul>
                   <li>Two adults + any kids</li>
-                  <li>Supports New England VegFest & VegWorcester</li>
-                  <li>Discounts & perks at veg-friendly businesses</li>
+                  <li>Supports New England VegFest &amp; VegWorcester</li>
+                  <li>Discounts &amp; perks at veg-friendly businesses</li>
                   <li>Early admission to New England VegFest</li>
                   <li>100% Tax-deductible donation</li>
                 </ul>
                 <p class="text-center">$14/month</p>
-                <p  class="text-center">
+                <p class="text-center">
                   <button class="btn btn-block btn-secondary btn-lg" id="membership-family">Sign up</button>
                 </p>
               </div>
@@ -90,19 +75,25 @@
                 <h3 class="member-heading member-heading-3">VIP Membership</h3>
                 <ul>
                   <li>Two adults + any kids</li>
-                  <li>Best way to support New England VegFest & VegWorcester</li>
-                  <li>Discounts & perks at veg-friendly businesses</li>
+                  <li>Best way to support New England VegFest &amp; VegWorcester</li>
+                  <li>Discounts &amp; perks at veg-friendly businesses</li>
                   <li>Early admission to New England VegFest</li>
                   <li>100% Tax-deductible</li>
                 </ul>
                 <p class="text-center">$25/month</p>
-                <p  class="text-center">
+                <p class="text-center">
                   <button class="btn btn-block btn-primary btn-lg" id="membership-vip">Sign up</button>
                 </p>
               </div>
             </div>
-          </form>
+            {{!-- <div class="row">
+              <div class="col-md-offset-1 col-md-10">
 
+
+              </div>
+
+            </div> --}}
+          </form>
 
         <script>
 
