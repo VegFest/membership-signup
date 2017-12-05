@@ -1,10 +1,10 @@
 {{> header }}
 
       <header class="row" id="event-header">
-	      <div class="col-md-10 col-md-offset-1 " style="background: linear-gradient(to bottom,#fff 0,#eaeaea 100%);border-radius: 5px;-webkit-box-shadow: 0 1px 9px 0 rgba(0,0,0,0.7);box-shadow: 0 1px 9px 0 rgba(0,0,0,0.7);padding:5%; margin-top  :2%;">
+	      <div class="col-md-10 col-lg-10 col-xl-9 mx-auto" style="background: linear-gradient(to bottom,#fff 0,#eaeaea 100%);border-radius: 5px;-webkit-box-shadow: 0 1px 9px 0 rgba(0,0,0,0.7);box-shadow: 0 1px 9px 0 rgba(0,0,0,0.7);padding:5%; margin-top  :2%;">
           <div class="row">
-            <div class="col-sm-offset-2 col-sm-8 text-center">
-              <img src="/assets/img/vegetables.png" alt="" class="img-responsive" />
+            <div class="col-sm-offset-2 offset-md-3 col-sm-8 text-center mx-auto">
+              <img src="/assets/img/vegetables.png" alt="" class="img-fluid" />
             </div>
           </div>
           <div class="text-center">
@@ -12,88 +12,45 @@
   	        <h2>
               Show your support for <strong>VegWorcester</strong> & <strong>New England VegFest</strong>!
   	        </h2>
+            <img src="/assets/img/new-england-vegfest-volunteer-team.jpg" class="img-fluid">
           </div>
 
           <p>
-            <img src="/assets/img/new-england-vegfest-volunteer-team.jpg" class="img-responsive">
+
 
             <br>
             <h2>Help Sustain the New England VegFest & VegWorcester</h2>
-            <h3>
+            <p class="p-3">
               Attending New England VegFest is free &amp; open to the public and we rely on support &amp; donations from individuals to make this event happen. This festival is organized &amp; run by volunteers. If you've attended in the past and enjoyed the event, please show your support by becoming a member today&mdash;we have some nice perks to show our gratitude!
-            </h3>
+            </p>
 
+          {{!-- <form id="stripe-form" class="" action="/subscribe" method="post"> --}}
 
-          <form id="stripe-form" class="" action="/subscribe" method="post">
-            <input id="stripeEmail" type="hidden" name="stripeEmail" value="">
-            <input id="stripeToken" type="hidden" name="stripeToken" value="">
-            <input id="subscriptionPlan" type="hidden" name="subscriptionPlan" value="">
-            <input id="stripeShippingName" type="hidden" name="stripeShippingName" value="">
-            <input id="stripeShippingAddressLine1" type="hidden" name="stripeShippingAddressLine1" value="">
-            <input id="stripeShippingAddressZip" type="hidden" name="stripeShippingAddressZip" value="">
-            <input id="stripeShippingAddressState" type="hidden" name="stripeShippingAddressState" value="">
-            <input id="stripeShippingAddressCity" type="hidden" name="stripeShippingAddressCity" value="">
-            <input id="stripeShippingAddressCountry" type="hidden" name="stripeShippingAddressCountry" value="">
-            <input id="stripeShippingAddressCountryCode" type="hidden" name="stripeShippingAddressCountryCode" value="">
             {{> membership-perks}}
-            <div class="row">
-              <div class="col-xs-12 text-center">
-                <h2 class="zona">Membership Options</h2>
+            <div class="row m-3">
+              <div class="col-xs-12 mx-auto">
+                <h2 class="zona">Sign Up</h2>
+                <hr>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-4 member-level">
-                <h3 class="member-heading member-heading-1">Individual Membership</h3>
-                <ul>
-                  <li>One adult</li>
-                  <li>Supports New England VegFest &amp; VegWorcester</li>
-                  <li>Discounts &amp; perks at veg-friendly businesses</li>
-                  <li>Early admission to New England VegFest</li>
-                  <li>100% Tax-deductible donation</li>
-                </ul>
-                <p class="text-center">$6/month</p>
-                <p class="text-center">
-                  <button class="btn btn-block btn-thirdary btn-lg" id="membership-individual">Sign up</button>
-                </p>
 
+
+              <div class="row w-100">
+                <div class="col-md-8 mx-auto">
+                  {{>signup-form}}
+                </div>
               </div>
-              <div class="col-md-4 member-level">
-                <h3 class="member-heading member-heading-2">Family Membership</h3>
-                <ul>
-                  <li>Two adults + any kids</li>
-                  <li>Supports New England VegFest &amp; VegWorcester</li>
-                  <li>Discounts &amp; perks at veg-friendly businesses</li>
-                  <li>Early admission to New England VegFest</li>
-                  <li>100% Tax-deductible donation</li>
-                </ul>
-                <p class="text-center">$14/month</p>
-                <p class="text-center">
-                  <button class="btn btn-block btn-secondary btn-lg" id="membership-family">Sign up</button>
-                </p>
-              </div>
-              <div class="col-md-4 member-level">
-                <h3 class="member-heading member-heading-3">VIP Membership</h3>
-                <ul>
-                  <li>Two adults + any kids</li>
-                  <li>Best way to support New England VegFest &amp; VegWorcester</li>
-                  <li>Discounts &amp; perks at veg-friendly businesses</li>
-                  <li>Early admission to New England VegFest</li>
-                  <li>100% Tax-deductible</li>
-                </ul>
-                <p class="text-center">$25/month</p>
-                <p class="text-center">
-                  <button class="btn btn-block btn-primary btn-lg" id="membership-vip">Sign up</button>
-                </p>
-              </div>
-            </div>
+
+
+
             {{!-- <div class="row">
-              <div class="col-md-offset-1 col-md-10">
+              <div class="offset-md-1 col-md-10">
 
 
               </div>
 
             </div> --}}
-          </form>
+          {{!-- </form> --}}
 
         <script>
 
@@ -155,3 +112,4 @@
         })
     </script>
 {{> footer }}
+te
