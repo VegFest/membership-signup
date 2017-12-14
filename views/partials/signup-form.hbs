@@ -35,14 +35,25 @@
   <input id="stripeToken" type="hidden" name="stripeToken" value="">
 
   <div class="form-group row">
-    <label for="subscriptionPlan" class="col-sm-6 control-label">Contribution amount:</label>
-    <div class="col-sm-6">
-      <input type="radio" name="subscriptionPlan" value="membership-06"> $6/month<br>
-      <input type="radio" name="subscriptionPlan" value="membership-14" checked> $14/month<br>
-      <input type="radio" name="subscriptionPlan" value="membership-25"> $25/month<br>
-      <input type="radio" name="subscriptionPlan" value="membership-50"> $50/month
+    <div class="col-sm-12" style="font-size:1.25em">
+      Select your monthly contribution:
     </div>
   </div>
+  <div class="form-group row">
+    <div class="col-sm-2 mx-auto">
+      <input type="radio" name="subscriptionPlan" id="membership-06" value="membership-06"> <label for="membership-06">$6</label>
+    </div>
+    <div class="col-sm-2 mx-auto">
+      <input type="radio" name="subscriptionPlan" id="membership-14" value="membership-14" checked> <label for="membership-14">$14</label>
+    </div>
+    <div class="col-sm-2 mx-auto">
+      <input type="radio" name="subscriptionPlan" id="membership-25" value="membership-25"> <label for="membership-25">$25</label>
+    </div>
+    <div class="col-sm-2 mx-auto">
+      <input type="radio" name="subscriptionPlan" id="membership-50" value="membership-50"> <label for="membership-50">$50</label>
+    </div>
+  </div>
+  <hr>
 
   <div class="form-group row">
     <label for="stripeShippingName" class="col-sm-2 control-label">Name</label>
