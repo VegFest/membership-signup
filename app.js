@@ -62,6 +62,10 @@ app.post("/subscribe", (req, res) => {
 });
 
 
+//custom 404 page
+app.get('*', function(req, res){
+  res.render("404.hbs");
+});
 
 
 app.listen(port);
