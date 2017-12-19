@@ -24,7 +24,7 @@
               Attending New England VegFest is free &amp; open to the public and we rely on support &amp; donations from individuals to make this event happen. This festival is organized &amp; run by volunteers. If you've attended in the past and enjoyed the event, please show your support by becoming a member today&mdash;we have some nice perks to show our gratitude!
             </p>
 
-          {{!-- <form id="stripe-form" class="" action="/subscribe" method="post"> --}}
+
 
             {{> membership-perks}}
             <div class="row m-3">
@@ -43,72 +43,5 @@
 
 
 
-            {{!-- <div class="row">
-              <div class="offset-md-1 col-md-10">
-
-
-              </div>
-
-            </div> --}}
-          {{!-- </form> --}}
-
-        <script>
-
-        function addTokenToDOM (token, args) {
-          // Use the token to create the charge with a server-side script.
-          // You can access the token ID with `token.id`
-          $('#stripeToken').val(token.id);
-          $('#stripeEmail').val(token.email);
-          $('#stripeShippingName').val(args.shipping_name);
-          $('#stripeShippingAddressLine1').val(args.shipping_address_line1);
-          $('#stripeShippingAddressZip').val(args.shipping_address_zip);
-          $('#stripeShippingAddressState').val(args.shipping_address_state);
-          $('#stripeShippingAddressCity').val(args.shipping_address_city);
-          $('#stripeShippingAddressCountry').val(args.shipping_address_country);
-          $('#stripeShippingAddressCountryCode').val(args.shipping_address_country_code);
-
-          console.log('token ',token);
-          console.log('arg ',args);
-
-          $('#stripe-form').submit();
-        }
-
-        function configureCheckout (name, desc, amtInCents, planID) {
-          $('#subscriptionPlan').val(planID);
-
-          var checkout = StripeCheckout.configure({
-            name: name,
-            description: desc,
-            amount:amtInCents,
-            token: addTokenToDOM,
-            locale:"auto",
-            key:"{{keyPublishable}}",
-            // image:"//member.vegfest.org/assets/images/vegfest-only-color-logo.png",
-            panelLabel:"Become a member",
-            billingAddress:true,
-            zipCode:true,
-            shippingAddress:true,
-            allowRememberMe:false
-          });
-          checkout.open();
-
-        }
-
-        $(document).ready(function () {
-
-          $('#membership-individual').click( function(e) {
-            configureCheckout("Individual Membership", "$6/month", 600, "membership-individual06");
-            e.preventDefault();
-          });
-          $('#membership-family').click( function(e) {
-            configureCheckout("Family Membership", "$14/month", 1400, "membership-family14");
-            e.preventDefault();
-          });
-          $('#membership-vip').click( function(e) {
-            configureCheckout("VIP Membership", "$25/month", 2500, "membership-vip25");
-            e.preventDefault();
-          });
-
-        })
-    </script>
+      
 {{> footer }}
