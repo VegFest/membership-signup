@@ -33,6 +33,7 @@
 
 <form action="/subscribe" method="post" id="payment-form">
   <input id="stripeToken" type="hidden" name="stripeToken" value="">
+  <input id="src" type="hidden" name="src" value="unknown">
 
   <div class="form-group row">
     <div class="col-sm-12" style="font-size:1.25em">
@@ -125,6 +126,13 @@
 
 
 <script type="text/javascript">
+
+var src=getParameterByName('src');//get src GET param
+if (src == '') {
+  src = 'unknown';//if src GET param doesn't exist, then set it to to 'unknown'
+}
+$('#src').val(getParameterByName('src'));//put src var in form so it gets submitted to the backend
+
 // Create a Stripe client
 var stripe = Stripe('{{keyPublishable}}');
 

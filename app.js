@@ -30,6 +30,11 @@ app.get("/", (req, res) =>
 app.post("/subscribe", (req, res) => {
   console.log('New Member! Here is what was just submitted:');
   console.log(req.body);
+  var memberSrc = 'unknown';
+
+  if (typeof req.body.src !== 'undefined' && req.body.src !== null && req.body.src != '') {
+    memberSrc = req.body.src;
+  }
 
   stripe.customers.create({
      email: req.body.stripeEmail,
@@ -38,7 +43,7 @@ app.post("/subscribe", (req, res) => {
        memberStartDate: new Date(),
        memberPlan: req.body.subscriptionPlan,
        memberEmail: req.body.stripeEmail,
-       //memberSrc: req.body.src, //add this later in the frontend, it should come from GET param ?src=XXXX
+       memberSrc: memberSrc, //add this later in the frontend, it should come from GET param ?src=XXXX
        shippingName:req.body.stripeShippingName,
        shippingAddressLine1:req.body.stripeShippingAddressLine1,
        shippingAddressZip:req.body.stripeShippingAddressZip,
