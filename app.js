@@ -66,11 +66,54 @@ app.post("/subscribe", (req, res) => {
   .then(subscription => res.render("subscribe.hbs", {subscription}));
 });
 
+// a page with stats about membership
+app.get("/stats", (req, res) => {
+
+  stripe.subscriptions.list(
+    // { plan: 'membership-14' },
+    { limit: 99 },
+    function(err, subscriptions) {
+    // asynchronously called
+
+    var stats = {
+      monthly06 : 0,
+      monthly14: 0,
+      monthly25: 0,
+      monthly50: 0
+    }
+      for (var i = 0; i < subscriptions.data.length; i++) {
+
+        if (subscriptions.data[i].plan.id == 'membership-06') {
+          stats.monthly06++;
+        }
+        if (subscriptions.data[i].plan.id == 'membership-14') {
+          stats.monthly14++;
+        }
+        if (subscriptions.data[i].plan.id == 'membership-25') {
+          stats.monthly25++;
+        }
+        if (subscriptions.data[i].plan.id == 'membership-50') {
+          stats.monthly50++;
+        }
+      }
+      res.render("stats.hbs", stats);
+  });
+
+}
+)
+
+
 
 //custom 404 page
 app.get('*', function(req, res){
   res.render("404.hbs");
 });
+
+
+
+
+
+
 
 
 app.listen(port);
