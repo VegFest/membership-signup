@@ -79,7 +79,9 @@ app.get("/stats", (req, res) => {
       monthly06 : 0,
       monthly14: 0,
       monthly25: 0,
-      monthly50: 0
+      monthly50: 0,
+      totalMonthlyAmt: 0,
+      totalMembers: 0
     }
       for (var i = 0; i < subscriptions.data.length; i++) {
 
@@ -96,6 +98,8 @@ app.get("/stats", (req, res) => {
           stats.monthly50++;
         }
       }
+      stats.totalMonthlyAmt = (stats.monthly06 * 6) + (stats.monthly14 * 14) + (stats.monthly25 * 25) + (stats.monthly50 * 50);
+      stats.totalMembers = stats.monthly06 + stats.monthly14 + stats.monthly25 + stats.monthly50;
       res.render("stats.hbs", stats);
   });
 
