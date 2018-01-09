@@ -123,9 +123,9 @@ app.get("/statsforslack", (req, res) => {
     sentence += 'Which fundraises *$' + data.totalMonthlyAmt + '/mo*. \n';
     sentence += '---\n';
     sentence += '*' + data.monthly06 + '* members @ $6/mo. \n';
-    sentence += '*' + data.monthly06 + '* members @ $14/mo. \n';
-    sentence += '*' + data.monthly06 + '* members @ $25/mo. \n';
-    sentence += '*' + data.monthly06 + '* members @ $50/mo. \n';
+    sentence += '*' + data.monthly14 + '* members @ $14/mo. \n';
+    sentence += '*' + data.monthly25 + '* members @ $25/mo. \n';
+    sentence += '*' + data.monthly50 + '* members @ $50/mo. \n';
 
     res.send(sentence);
     console.log('sentence ',sentence);
