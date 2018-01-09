@@ -114,6 +114,24 @@ app.get("/statsapi", (req, res) => {
   });
 });//statsapi
 
+
+app.get("/statsforslack", (req, res) => {
+
+  getStats(function (data) {
+    var sentence = ''
+    sentence += 'There are a total of ' + data.totalMembers + ' members./n';
+    sentence += 'Which results in $' + data.totalMonthlyAmt + '/mo. /n';
+    sentence += '--/n';
+    sentence += data.monthly06 + ' members @ $6/mo. /n';
+    sentence += data.monthly06 + ' members @ $14/mo. /n';
+    sentence += data.monthly06 + ' members @ $25/mo. /n';
+    sentence += data.monthly06 + ' members @ $50/mo. /n';
+
+    res.send(sentence);
+    console.log('sentence ',sentence);
+  });
+});//statsapi
+
 // a page with stats about membership
 app.get("/stats", (req, res) => {
   getStats(function (data) {
