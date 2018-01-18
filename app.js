@@ -121,6 +121,7 @@ app.get("/statsforslack", (req, res) => {
     var sentence = '---\n';
     sentence += 'There are a total of *' + data.totalMembers + ' members*.\n';
     sentence += 'Which fundraises *$' + data.totalMonthlyAmt + '/mo*. \n';
+    sentence += 'Estimated annual fundraising: *$' + data.totalMonthlyAmt*12 + '* (if everyone is a member for a year). \n';
     sentence += '---\n';
     sentence += '*' + data.monthly06 + '* members @ $6/mo. \n';
     sentence += '*' + data.monthly14 + '* members @ $14/mo. \n';
