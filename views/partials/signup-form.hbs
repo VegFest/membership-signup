@@ -42,16 +42,16 @@
   </div>
   <div class="form-group row">
     <div class="col-sm-2 mx-auto">
-      <input type="radio" name="subscriptionPlan" id="membership-06" value="membership-06"> <label for="membership-06">$6</label>
+      <input type="radio" name="subscriptionPlan" id="membership-06" value="membership-06" data-amount="6"> <label for="membership-06">$6</label>
     </div>
     <div class="col-sm-2 mx-auto">
-      <input type="radio" name="subscriptionPlan" id="membership-14" value="membership-14" checked> <label for="membership-14">$14</label>
+      <input type="radio" name="subscriptionPlan" id="membership-14" value="membership-14" data-amount="14" checked> <label for="membership-14">$14</label>
     </div>
     <div class="col-sm-2 mx-auto">
-      <input type="radio" name="subscriptionPlan" id="membership-25" value="membership-25"> <label for="membership-25">$25</label>
+      <input type="radio" name="subscriptionPlan" id="membership-25" value="membership-25" data-amount="25"> <label for="membership-25">$25</label>
     </div>
     <div class="col-sm-2 mx-auto">
-      <input type="radio" name="subscriptionPlan" id="membership-50" value="membership-50"> <label for="membership-50">$50</label>
+      <input type="radio" name="subscriptionPlan" id="membership-50" value="membership-50" data-amount="50"> <label for="membership-50">$50</label>
     </div>
   </div>
   <hr>
@@ -177,18 +177,23 @@ if (event.error) {
 // Handle form submission
 var form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
-event.preventDefault();
+  event.preventDefault();
 
-stripe.createToken(card).then(function(result) {
-  if (result.error) {
-    // Inform the user if there was an error
-    var errorElement = document.getElementById('card-errors');
-    errorElement.textContent = result.error.message;
-  } else {
-    // Send the token to your server
-    stripeTokenHandler(result.token);
-  }
-});
+  //get the amt of membership by slicing the last 2 char off the end
+  var amt = $('input[name=subscriptionPlan]:checked', '#payment-form').val().slice(11,13);
+
+  fbq('track', 'Purchase', {value: amt, currency: 'USD'});
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server
+      stripeTokenHandler(result.token);
+    }
+  });
 });
 
 function stripeTokenHandler (token) {
