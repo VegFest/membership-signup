@@ -64,6 +64,11 @@ app.use(require("body-parser").urlencoded({extended: false}));
 app.get("/", (req, res) =>
   res.render("index.hbs", {keyPublishable}));
 
+//3 reasons to become a member view set up with publishable key
+app.get("/3reasons", (req, res) =>
+  res.render("3reasons.hbs", {keyPublishable}));
+
+
 //this route is for post-checkout confirmation & actually signs ppl up
 app.post("/subscribe", (req, res) => {
   console.log('New Member! Here is what was just submitted:');
