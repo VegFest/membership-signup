@@ -62,7 +62,7 @@ app.use(require("body-parser").urlencoded({extended: false}));
 
 //main route & view set up with publishable key
 app.get("/", (req, res) =>
-  res.render("index.hbs", {keyPublishable}));
+  res.render("3reasons.hbs", {keyPublishable}));
 
 //3 reasons to become a member view set up with publishable key
 app.get("/3reasons", (req, res) =>
