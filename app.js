@@ -1,7 +1,7 @@
 
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 const express = require("express");
 const app = express();
@@ -17,6 +17,7 @@ function getStats (cb) {
 
     var stats = {
       monthly06 : 0,
+      monthly10 : 0,
       monthly14: 0,
       monthly25: 0,
       monthly50: 0,
@@ -26,6 +27,9 @@ function getStats (cb) {
     for (var i = 0; i < subscriptions.data.length; i++) {
       if (subscriptions.data[i].plan.id == 'membership-06') {
         stats.monthly06++;
+      }
+      if (subscriptions.data[i].plan.id == 'plan_EcdyYnI6uTihEv') {
+        stats.monthly10++;
       }
       if (subscriptions.data[i].plan.id == 'membership-14') {
         stats.monthly14++;
@@ -37,8 +41,8 @@ function getStats (cb) {
         stats.monthly50++;
       }
     }
-    stats.totalMonthlyAmt = (stats.monthly06 * 6) + (stats.monthly14 * 14) + (stats.monthly25 * 25) + (stats.monthly50 * 50);
-    stats.totalMembers = stats.monthly06 + stats.monthly14 + stats.monthly25 + stats.monthly50;
+    stats.totalMonthlyAmt = (stats.monthly06 * 6) + (stats.monthly10 * 10) + (stats.monthly14 * 14) + (stats.monthly25 * 25) + (stats.monthly50 * 50);
+    stats.totalMembers = stats.monthly06 + stats.monthly10 + stats.monthly14 + stats.monthly25 + stats.monthly50;
     cb(stats);
   });
 };
@@ -78,6 +82,7 @@ app.post("/subscribe", (req, res) => {
   if (typeof req.body.src !== 'undefined' && req.body.src !== null && req.body.src != '') {
     memberSrc = req.body.src;
   }
+  console.log('memberSrc: ', memberSrc);
 
   stripe.customers.create({
      email: req.body.stripeEmail,
@@ -107,6 +112,7 @@ app.post("/subscribe", (req, res) => {
     }))
 
   .then(subscription => res.render("subscribe.hbs", {subscription}));
+
 });
 
 // a json api with stats about membership
@@ -129,6 +135,7 @@ app.get("/statsforslack", (req, res) => {
     sentence += 'Estimated annual fundraising: *$' + data.totalMonthlyAmt*12 + '* (if everyone is a member for a year). \n';
     sentence += '---\n';
     sentence += '*' + data.monthly06 + '* members @ $6/mo. \n';
+    sentence += '*' + data.monthly10 + '* members @ $10/mo. \n';
     sentence += '*' + data.monthly14 + '* members @ $14/mo. \n';
     sentence += '*' + data.monthly25 + '* members @ $25/mo. \n';
     sentence += '*' + data.monthly50 + '* members @ $50/mo. \n';
